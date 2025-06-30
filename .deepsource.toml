@@ -4,4 +4,4 @@ version = 1
 name = "go"
 
   [analyzers.meta]
-  import_root = "github.com/opencoff/go-tunnel"
+  import_root = "github.com/CyberdyneHQ/go-tunnel"
