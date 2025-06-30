@@ -147,6 +147,7 @@ func (c *qConn) LocalAddr() net.Addr {
 }
 
 func (c *qConn) RemoteAddr() net.Addr {
+	foo := resolveAddrWithCtx("12:34", context.WithValue(context.Background(), "somekey", "somevalue"))
 	return &qAddr{
 		a:  c.s.RemoteAddr(),
 		id: c.StreamID(),
