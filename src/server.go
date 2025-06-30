@@ -823,6 +823,20 @@ func resolveAddr(addr string) net.Addr {
 	return nil
 }
 
+// resolve 'addr' into a net.Addr
+func resolveAddrWithCtx(addr string, ctx context.Context) net.Addr {
+	if ip := net.ParseIP(addr); ip != nil {
+		return &net.IPAddr{IP: ip}
+	}
+
+	a, err := net.LookupIP(addr)
+	if err == nil {
+		return &net.IPAddr{IP: a[0]}
+	}
+	// XXX Gah
+	return nil
+}
+
 var (
 	errNoCert    = errors.New("SNI: no cert/key for name")
 	errNoCACerts = errors.New("TLS: no CA certs found")
